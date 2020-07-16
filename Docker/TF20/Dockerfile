@@ -12,7 +12,7 @@ ENV PATH ~/anaconda/bin:$PATH
 
 
 RUN locale-gen en_US.UTF-8
-ADD https://raw.githubusercontent.com/ChengJiacheng/keras_tutorial/master/Docker/TF20/TF20.yml /tmp/environment.yml
+ADD https://raw.githubusercontent.com/ChengJiacheng/GDL_code/master/Docker/TF20/TF20.yml /tmp/environment.yml
 
 
 RUN conda env create --file /tmp/environment.yml && echo "source activate TF20" >> ~/.bashrc

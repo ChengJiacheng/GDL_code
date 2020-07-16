@@ -79,7 +79,7 @@ class VariationalAutoencoder():
         self.mu = Dense(self.z_dim, name='mu')(x)
         self.log_var = Dense(self.z_dim, name='log_var')(x)
 
-        self.encoder_mu_log_var = Model(encoder_input, (self.mu, self.log_var))
+        # self.encoder_mu_log_var = Model(encoder_input, (self.mu, self.log_var))
 
         def sampling(args):
             mu, log_var = args
@@ -175,7 +175,7 @@ class VariationalAutoencoder():
                 , self.use_dropout
                 ], f)
 
-        self.plot_model(folder)
+        # self.plot_model(folder)
 
 
     def load_weights(self, filepath):
@@ -224,7 +224,7 @@ class VariationalAutoencoder():
             , initial_epoch = initial_epoch
             , callbacks = callbacks_list
             , steps_per_epoch=steps_per_epoch 
-            , workers=2, use_multiprocessing=True
+            # , workers=2, use_multiprocessing=True
             , verbose=1
             )
 
