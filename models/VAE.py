@@ -224,8 +224,8 @@ class VariationalAutoencoder():
             , initial_epoch = initial_epoch
             , callbacks = callbacks_list
             , steps_per_epoch=steps_per_epoch 
-            , workers=0, use_multiprocessing=0
-            , verbose=2
+            , workers=2, use_multiprocessing=True
+            , verbose=1
             )
 
 
