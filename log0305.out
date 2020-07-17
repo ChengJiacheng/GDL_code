@@ -1,0 +1,1294 @@
+Found 202599 images belonging to 1 classes.
+Model: "model_1"
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+encoder_input (InputLayer)      (None, 128, 128, 3)  0                                            
+__________________________________________________________________________________________________
+encoder_conv_0 (Conv2D)         (None, 64, 64, 32)   896         encoder_input[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_1 (BatchNor (None, 64, 64, 32)   128         encoder_conv_0[0][0]             
+__________________________________________________________________________________________________
+leaky_re_lu_1 (LeakyReLU)       (None, 64, 64, 32)   0           batch_normalization_1[0][0]      
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 64, 64, 32)   0           leaky_re_lu_1[0][0]              
+__________________________________________________________________________________________________
+encoder_conv_1 (Conv2D)         (None, 32, 32, 64)   18496       dropout_1[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_2 (BatchNor (None, 32, 32, 64)   256         encoder_conv_1[0][0]             
+__________________________________________________________________________________________________
+leaky_re_lu_2 (LeakyReLU)       (None, 32, 32, 64)   0           batch_normalization_2[0][0]      
+__________________________________________________________________________________________________
+dropout_2 (Dropout)             (None, 32, 32, 64)   0           leaky_re_lu_2[0][0]              
+__________________________________________________________________________________________________
+encoder_conv_2 (Conv2D)         (None, 16, 16, 64)   36928       dropout_2[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_3 (BatchNor (None, 16, 16, 64)   256         encoder_conv_2[0][0]             
+__________________________________________________________________________________________________
+leaky_re_lu_3 (LeakyReLU)       (None, 16, 16, 64)   0           batch_normalization_3[0][0]      
+__________________________________________________________________________________________________
+dropout_3 (Dropout)             (None, 16, 16, 64)   0           leaky_re_lu_3[0][0]              
+__________________________________________________________________________________________________
+encoder_conv_3 (Conv2D)         (None, 8, 8, 64)     36928       dropout_3[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_4 (BatchNor (None, 8, 8, 64)     256         encoder_conv_3[0][0]             
+__________________________________________________________________________________________________
+leaky_re_lu_4 (LeakyReLU)       (None, 8, 8, 64)     0           batch_normalization_4[0][0]      
+__________________________________________________________________________________________________
+dropout_4 (Dropout)             (None, 8, 8, 64)     0           leaky_re_lu_4[0][0]              
+__________________________________________________________________________________________________
+flatten_1 (Flatten)             (None, 4096)         0           dropout_4[0][0]                  
+__________________________________________________________________________________________________
+mu (Dense)                      (None, 200)          819400      flatten_1[0][0]                  
+__________________________________________________________________________________________________
+log_var (Dense)                 (None, 200)          819400      flatten_1[0][0]                  
+__________________________________________________________________________________________________
+encoder_output (Lambda)         (None, 200)          0           mu[0][0]                         
+                                                                 log_var[0][0]                    
+==================================================================================================
+Total params: 1,732,944
+Trainable params: 1,732,496
+Non-trainable params: 448
+__________________________________________________________________________________________________
+Model: "model_2"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+decoder_input (InputLayer)   (None, 200)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 4096)              823296    
+_________________________________________________________________
+reshape_1 (Reshape)          (None, 8, 8, 64)          0         
+_________________________________________________________________
+decoder_conv_t_0 (Conv2DTran (None, 16, 16, 64)        36928     
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 16, 16, 64)        256       
+_________________________________________________________________
+leaky_re_lu_5 (LeakyReLU)    (None, 16, 16, 64)        0         
+_________________________________________________________________
+dropout_5 (Dropout)          (None, 16, 16, 64)        0         
+_________________________________________________________________
+decoder_conv_t_1 (Conv2DTran (None, 32, 32, 64)        36928     
+_________________________________________________________________
+batch_normalization_6 (Batch (None, 32, 32, 64)        256       
+_________________________________________________________________
+leaky_re_lu_6 (LeakyReLU)    (None, 32, 32, 64)        0         
+_________________________________________________________________
+dropout_6 (Dropout)          (None, 32, 32, 64)        0         
+_________________________________________________________________
+decoder_conv_t_2 (Conv2DTran (None, 64, 64, 32)        18464     
+_________________________________________________________________
+batch_normalization_7 (Batch (None, 64, 64, 32)        128       
+_________________________________________________________________
+leaky_re_lu_7 (LeakyReLU)    (None, 64, 64, 32)        0         
+_________________________________________________________________
+dropout_7 (Dropout)          (None, 64, 64, 32)        0         
+_________________________________________________________________
+decoder_conv_t_3 (Conv2DTran (None, 128, 128, 3)       867       
+_________________________________________________________________
+activation_1 (Activation)    (None, 128, 128, 3)       0         
+=================================================================
+Total params: 917,123
+Trainable params: 916,803
+Non-trainable params: 320
+_________________________________________________________________
+Epoch 1/200
+ - 327s - loss: 274.6378 - vae_r_loss: 212.7710 - vae_kl_loss: 61.8710
+
+Epoch 00001: saving model to run/vae/0001_faces/weights/weights-001-274.64.h5
+
+Epoch 00001: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 2/200
+ - 287s - loss: 233.3555 - vae_r_loss: 174.3882 - vae_kl_loss: 58.9682
+
+Epoch 00002: saving model to run/vae/0001_faces/weights/weights-002-233.36.h5
+
+Epoch 00002: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 3/200
+ - 287s - loss: 228.5172 - vae_r_loss: 169.4273 - vae_kl_loss: 59.0913
+
+Epoch 00003: saving model to run/vae/0001_faces/weights/weights-003-228.52.h5
+
+Epoch 00003: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 4/200
+ - 267s - loss: 226.1644 - vae_r_loss: 167.1769 - vae_kl_loss: 58.9894
+
+Epoch 00004: saving model to run/vae/0001_faces/weights/weights-004-226.17.h5
+
+Epoch 00004: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 5/200
+ - 280s - loss: 224.7437 - vae_r_loss: 165.7646 - vae_kl_loss: 58.9759
+
+Epoch 00005: saving model to run/vae/0001_faces/weights/weights-005-224.74.h5
+
+Epoch 00005: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 6/200
+ - 271s - loss: 223.7489 - vae_r_loss: 164.7896 - vae_kl_loss: 58.9510
+
+Epoch 00006: saving model to run/vae/0001_faces/weights/weights-006-223.74.h5
+
+Epoch 00006: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 7/200
+ - 268s - loss: 223.0916 - vae_r_loss: 164.1293 - vae_kl_loss: 58.9643
+
+Epoch 00007: saving model to run/vae/0001_faces/weights/weights-007-223.09.h5
+
+Epoch 00007: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 8/200
+ - 266s - loss: 222.4714 - vae_r_loss: 163.5108 - vae_kl_loss: 58.9625
+
+Epoch 00008: saving model to run/vae/0001_faces/weights/weights-008-222.47.h5
+
+Epoch 00008: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 9/200
+ - 263s - loss: 221.9585 - vae_r_loss: 162.9949 - vae_kl_loss: 58.9604
+
+Epoch 00009: saving model to run/vae/0001_faces/weights/weights-009-221.96.h5
+
+Epoch 00009: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 10/200
+ - 269s - loss: 221.5679 - vae_r_loss: 162.6223 - vae_kl_loss: 58.9450
+
+Epoch 00010: saving model to run/vae/0001_faces/weights/weights-010-221.57.h5
+
+Epoch 00010: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 11/200
+ - 264s - loss: 221.2802 - vae_r_loss: 162.3424 - vae_kl_loss: 58.9396
+
+Epoch 00011: saving model to run/vae/0001_faces/weights/weights-011-221.28.h5
+
+Epoch 00011: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 12/200
+ - 268s - loss: 220.9715 - vae_r_loss: 162.0104 - vae_kl_loss: 58.9581
+
+Epoch 00012: saving model to run/vae/0001_faces/weights/weights-012-220.97.h5
+
+Epoch 00012: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 13/200
+ - 266s - loss: 220.8179 - vae_r_loss: 161.8218 - vae_kl_loss: 58.9946
+
+Epoch 00013: saving model to run/vae/0001_faces/weights/weights-013-220.82.h5
+
+Epoch 00013: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 14/200
+ - 266s - loss: 220.6601 - vae_r_loss: 161.6566 - vae_kl_loss: 59.0013
+
+Epoch 00014: saving model to run/vae/0001_faces/weights/weights-014-220.66.h5
+
+Epoch 00014: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 15/200
+ - 265s - loss: 220.3870 - vae_r_loss: 161.4037 - vae_kl_loss: 58.9812
+
+Epoch 00015: saving model to run/vae/0001_faces/weights/weights-015-220.38.h5
+
+Epoch 00015: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 16/200
+ - 273s - loss: 220.2727 - vae_r_loss: 161.2383 - vae_kl_loss: 59.0318
+
+Epoch 00016: saving model to run/vae/0001_faces/weights/weights-016-220.27.h5
+
+Epoch 00016: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 17/200
+ - 280s - loss: 220.0971 - vae_r_loss: 161.0809 - vae_kl_loss: 59.0143
+
+Epoch 00017: saving model to run/vae/0001_faces/weights/weights-017-220.10.h5
+
+Epoch 00017: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 18/200
+ - 283s - loss: 220.0512 - vae_r_loss: 161.0408 - vae_kl_loss: 59.0101
+
+Epoch 00018: saving model to run/vae/0001_faces/weights/weights-018-220.05.h5
+
+Epoch 00018: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 19/200
+ - 269s - loss: 219.9050 - vae_r_loss: 160.8756 - vae_kl_loss: 59.0228
+
+Epoch 00019: saving model to run/vae/0001_faces/weights/weights-019-219.90.h5
+
+Epoch 00019: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 20/200
+ - 269s - loss: 219.7990 - vae_r_loss: 160.7530 - vae_kl_loss: 59.0379
+
+Epoch 00020: saving model to run/vae/0001_faces/weights/weights-020-219.79.h5
+
+Epoch 00020: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 21/200
+ - 263s - loss: 219.5509 - vae_r_loss: 160.5482 - vae_kl_loss: 59.0019
+
+Epoch 00021: saving model to run/vae/0001_faces/weights/weights-021-219.55.h5
+
+Epoch 00021: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 22/200
+ - 263s - loss: 219.4538 - vae_r_loss: 160.4517 - vae_kl_loss: 59.0026
+
+Epoch 00022: saving model to run/vae/0001_faces/weights/weights-022-219.45.h5
+
+Epoch 00022: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 23/200
+ - 264s - loss: 219.4685 - vae_r_loss: 160.4364 - vae_kl_loss: 59.0346
+
+Epoch 00023: saving model to run/vae/0001_faces/weights/weights-023-219.47.h5
+
+Epoch 00023: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 24/200
+ - 265s - loss: 219.4015 - vae_r_loss: 160.3605 - vae_kl_loss: 59.0354
+
+Epoch 00024: saving model to run/vae/0001_faces/weights/weights-024-219.40.h5
+
+Epoch 00024: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 25/200
+ - 268s - loss: 219.3233 - vae_r_loss: 160.2731 - vae_kl_loss: 59.0415
+
+Epoch 00025: saving model to run/vae/0001_faces/weights/weights-025-219.31.h5
+
+Epoch 00025: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 26/200
+ - 264s - loss: 219.2590 - vae_r_loss: 160.2325 - vae_kl_loss: 59.0118
+
+Epoch 00026: saving model to run/vae/0001_faces/weights/weights-026-219.24.h5
+
+Epoch 00026: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 27/200
+ - 269s - loss: 219.2641 - vae_r_loss: 160.2010 - vae_kl_loss: 59.0620
+
+Epoch 00027: saving model to run/vae/0001_faces/weights/weights-027-219.26.h5
+
+Epoch 00027: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 28/200
+ - 264s - loss: 219.0964 - vae_r_loss: 160.0751 - vae_kl_loss: 59.0201
+
+Epoch 00028: saving model to run/vae/0001_faces/weights/weights-028-219.10.h5
+
+Epoch 00028: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 29/200
+ - 271s - loss: 219.0368 - vae_r_loss: 160.0061 - vae_kl_loss: 59.0259
+
+Epoch 00029: saving model to run/vae/0001_faces/weights/weights-029-219.03.h5
+
+Epoch 00029: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 30/200
+ - 288s - loss: 218.9734 - vae_r_loss: 159.9255 - vae_kl_loss: 59.0455
+
+Epoch 00030: saving model to run/vae/0001_faces/weights/weights-030-218.97.h5
+
+Epoch 00030: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 31/200
+ - 267s - loss: 218.9296 - vae_r_loss: 159.9039 - vae_kl_loss: 59.0209
+
+Epoch 00031: saving model to run/vae/0001_faces/weights/weights-031-218.92.h5
+
+Epoch 00031: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 32/200
+ - 269s - loss: 218.8194 - vae_r_loss: 159.7947 - vae_kl_loss: 59.0202
+
+Epoch 00032: saving model to run/vae/0001_faces/weights/weights-032-218.81.h5
+
+Epoch 00032: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 33/200
+ - 270s - loss: 218.8484 - vae_r_loss: 159.8288 - vae_kl_loss: 59.0220
+
+Epoch 00033: saving model to run/vae/0001_faces/weights/weights-033-218.85.h5
+
+Epoch 00033: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 34/200
+ - 272s - loss: 218.7469 - vae_r_loss: 159.7409 - vae_kl_loss: 59.0049
+
+Epoch 00034: saving model to run/vae/0001_faces/weights/weights-034-218.75.h5
+
+Epoch 00034: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 35/200
+ - 271s - loss: 218.6658 - vae_r_loss: 159.6429 - vae_kl_loss: 59.0273
+
+Epoch 00035: saving model to run/vae/0001_faces/weights/weights-035-218.67.h5
+
+Epoch 00035: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 36/200
+ - 270s - loss: 218.7490 - vae_r_loss: 159.7052 - vae_kl_loss: 59.0461
+
+Epoch 00036: saving model to run/vae/0001_faces/weights/weights-036-218.75.h5
+
+Epoch 00036: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 37/200
+ - 277s - loss: 218.6857 - vae_r_loss: 159.6275 - vae_kl_loss: 59.0517
+
+Epoch 00037: saving model to run/vae/0001_faces/weights/weights-037-218.68.h5
+
+Epoch 00037: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 38/200
+ - 276s - loss: 218.6912 - vae_r_loss: 159.6399 - vae_kl_loss: 59.0509
+
+Epoch 00038: saving model to run/vae/0001_faces/weights/weights-038-218.69.h5
+
+Epoch 00038: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 39/200
+ - 277s - loss: 218.5944 - vae_r_loss: 159.5726 - vae_kl_loss: 59.0205
+
+Epoch 00039: saving model to run/vae/0001_faces/weights/weights-039-218.59.h5
+
+Epoch 00039: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 40/200
+ - 286s - loss: 218.4881 - vae_r_loss: 159.4631 - vae_kl_loss: 59.0233
+
+Epoch 00040: saving model to run/vae/0001_faces/weights/weights-040-218.49.h5
+
+Epoch 00040: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 41/200
+ - 275s - loss: 218.4589 - vae_r_loss: 159.4391 - vae_kl_loss: 59.0221
+
+Epoch 00041: saving model to run/vae/0001_faces/weights/weights-041-218.46.h5
+
+Epoch 00041: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 42/200
+ - 280s - loss: 218.4869 - vae_r_loss: 159.4528 - vae_kl_loss: 59.0377
+
+Epoch 00042: saving model to run/vae/0001_faces/weights/weights-042-218.49.h5
+
+Epoch 00042: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 43/200
+ - 278s - loss: 218.4570 - vae_r_loss: 159.4190 - vae_kl_loss: 59.0386
+
+Epoch 00043: saving model to run/vae/0001_faces/weights/weights-043-218.46.h5
+
+Epoch 00043: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 44/200
+ - 275s - loss: 218.4475 - vae_r_loss: 159.3927 - vae_kl_loss: 59.0519
+
+Epoch 00044: saving model to run/vae/0001_faces/weights/weights-044-218.44.h5
+
+Epoch 00044: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 45/200
+ - 278s - loss: 218.3606 - vae_r_loss: 159.3261 - vae_kl_loss: 59.0254
+
+Epoch 00045: saving model to run/vae/0001_faces/weights/weights-045-218.35.h5
+
+Epoch 00045: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 46/200
+ - 460s - loss: 218.3059 - vae_r_loss: 159.2654 - vae_kl_loss: 59.0384
+
+Epoch 00046: saving model to run/vae/0001_faces/weights/weights-046-218.30.h5
+
+Epoch 00046: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 47/200
+ - 277s - loss: 218.3926 - vae_r_loss: 159.3473 - vae_kl_loss: 59.0390
+
+Epoch 00047: saving model to run/vae/0001_faces/weights/weights-047-218.39.h5
+
+Epoch 00047: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 48/200
+ - 283s - loss: 218.2507 - vae_r_loss: 159.2158 - vae_kl_loss: 59.0332
+
+Epoch 00048: saving model to run/vae/0001_faces/weights/weights-048-218.25.h5
+
+Epoch 00048: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 49/200
+ - 277s - loss: 218.1907 - vae_r_loss: 159.1921 - vae_kl_loss: 59.0000
+
+Epoch 00049: saving model to run/vae/0001_faces/weights/weights-049-218.19.h5
+
+Epoch 00049: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 50/200
+ - 278s - loss: 218.2766 - vae_r_loss: 159.2447 - vae_kl_loss: 59.0287
+
+Epoch 00050: saving model to run/vae/0001_faces/weights/weights-050-218.27.h5
+
+Epoch 00050: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 51/200
+ - 284s - loss: 218.2258 - vae_r_loss: 159.1865 - vae_kl_loss: 59.0388
+
+Epoch 00051: saving model to run/vae/0001_faces/weights/weights-051-218.23.h5
+
+Epoch 00051: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 52/200
+ - 302s - loss: 218.1889 - vae_r_loss: 159.1499 - vae_kl_loss: 59.0424
+
+Epoch 00052: saving model to run/vae/0001_faces/weights/weights-052-218.19.h5
+
+Epoch 00052: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 53/200
+ - 279s - loss: 218.2100 - vae_r_loss: 159.1646 - vae_kl_loss: 59.0396
+
+Epoch 00053: saving model to run/vae/0001_faces/weights/weights-053-218.20.h5
+
+Epoch 00053: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 54/200
+ - 276s - loss: 218.1337 - vae_r_loss: 159.0959 - vae_kl_loss: 59.0393
+
+Epoch 00054: saving model to run/vae/0001_faces/weights/weights-054-218.14.h5
+
+Epoch 00054: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 55/200
+ - 275s - loss: 218.1571 - vae_r_loss: 159.1227 - vae_kl_loss: 59.0334
+
+Epoch 00055: saving model to run/vae/0001_faces/weights/weights-055-218.16.h5
+
+Epoch 00055: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 56/200
+ - 280s - loss: 218.1510 - vae_r_loss: 159.1067 - vae_kl_loss: 59.0423
+
+Epoch 00056: saving model to run/vae/0001_faces/weights/weights-056-218.15.h5
+
+Epoch 00056: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 57/200
+ - 273s - loss: 218.0603 - vae_r_loss: 159.0183 - vae_kl_loss: 59.0409
+
+Epoch 00057: saving model to run/vae/0001_faces/weights/weights-057-218.06.h5
+
+Epoch 00057: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 58/200
+ - 281s - loss: 218.0497 - vae_r_loss: 158.9850 - vae_kl_loss: 59.0629
+
+Epoch 00058: saving model to run/vae/0001_faces/weights/weights-058-218.05.h5
+
+Epoch 00058: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 59/200
+ - 277s - loss: 218.1196 - vae_r_loss: 159.0585 - vae_kl_loss: 59.0627
+
+Epoch 00059: saving model to run/vae/0001_faces/weights/weights-059-218.12.h5
+
+Epoch 00059: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 60/200
+ - 276s - loss: 218.0707 - vae_r_loss: 159.0122 - vae_kl_loss: 59.0517
+
+Epoch 00060: saving model to run/vae/0001_faces/weights/weights-060-218.06.h5
+
+Epoch 00060: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 61/200
+ - 282s - loss: 218.0350 - vae_r_loss: 158.9970 - vae_kl_loss: 59.0401
+
+Epoch 00061: saving model to run/vae/0001_faces/weights/weights-061-218.04.h5
+
+Epoch 00061: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 62/200
+ - 279s - loss: 218.0429 - vae_r_loss: 159.0018 - vae_kl_loss: 59.0366
+
+Epoch 00062: saving model to run/vae/0001_faces/weights/weights-062-218.04.h5
+
+Epoch 00062: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 63/200
+ - 282s - loss: 218.0471 - vae_r_loss: 158.9709 - vae_kl_loss: 59.0722
+
+Epoch 00063: saving model to run/vae/0001_faces/weights/weights-063-218.04.h5
+
+Epoch 00063: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 64/200
+ - 284s - loss: 217.9747 - vae_r_loss: 158.9230 - vae_kl_loss: 59.0438
+
+Epoch 00064: saving model to run/vae/0001_faces/weights/weights-064-217.97.h5
+
+Epoch 00064: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 65/200
+ - 286s - loss: 217.9768 - vae_r_loss: 158.9195 - vae_kl_loss: 59.0536
+
+Epoch 00065: saving model to run/vae/0001_faces/weights/weights-065-217.97.h5
+
+Epoch 00065: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 66/200
+ - 274s - loss: 217.9585 - vae_r_loss: 158.8807 - vae_kl_loss: 59.0722
+
+Epoch 00066: saving model to run/vae/0001_faces/weights/weights-066-217.95.h5
+
+Epoch 00066: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 67/200
+ - 281s - loss: 217.9684 - vae_r_loss: 158.9063 - vae_kl_loss: 59.0594
+
+Epoch 00067: saving model to run/vae/0001_faces/weights/weights-067-217.97.h5
+
+Epoch 00067: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 68/200
+ - 278s - loss: 217.9168 - vae_r_loss: 158.8682 - vae_kl_loss: 59.0492
+
+Epoch 00068: saving model to run/vae/0001_faces/weights/weights-068-217.92.h5
+
+Epoch 00068: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 69/200
+ - 298s - loss: 217.8866 - vae_r_loss: 158.8754 - vae_kl_loss: 59.0104
+
+Epoch 00069: saving model to run/vae/0001_faces/weights/weights-069-217.89.h5
+
+Epoch 00069: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 70/200
+ - 290s - loss: 217.8903 - vae_r_loss: 158.8554 - vae_kl_loss: 59.0318
+
+Epoch 00070: saving model to run/vae/0001_faces/weights/weights-070-217.89.h5
+
+Epoch 00070: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 71/200
+ - 294s - loss: 217.9002 - vae_r_loss: 158.8239 - vae_kl_loss: 59.0687
+
+Epoch 00071: saving model to run/vae/0001_faces/weights/weights-071-217.89.h5
+
+Epoch 00071: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 72/200
+ - 292s - loss: 217.9772 - vae_r_loss: 158.9193 - vae_kl_loss: 59.0456
+
+Epoch 00072: saving model to run/vae/0001_faces/weights/weights-072-217.96.h5
+
+Epoch 00072: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 73/200
+ - 301s - loss: 217.8392 - vae_r_loss: 158.7986 - vae_kl_loss: 59.0414
+
+Epoch 00073: saving model to run/vae/0001_faces/weights/weights-073-217.84.h5
+
+Epoch 00073: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 74/200
+ - 307s - loss: 217.8312 - vae_r_loss: 158.7811 - vae_kl_loss: 59.0518
+
+Epoch 00074: saving model to run/vae/0001_faces/weights/weights-074-217.83.h5
+
+Epoch 00074: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 75/200
+ - 283s - loss: 217.8698 - vae_r_loss: 158.8385 - vae_kl_loss: 59.0350
+
+Epoch 00075: saving model to run/vae/0001_faces/weights/weights-075-217.87.h5
+
+Epoch 00075: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 76/200
+ - 281s - loss: 217.8984 - vae_r_loss: 158.8270 - vae_kl_loss: 59.0759
+
+Epoch 00076: saving model to run/vae/0001_faces/weights/weights-076-217.90.h5
+
+Epoch 00076: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 77/200
+ - 293s - loss: 217.7941 - vae_r_loss: 158.7486 - vae_kl_loss: 59.0401
+
+Epoch 00077: saving model to run/vae/0001_faces/weights/weights-077-217.79.h5
+
+Epoch 00077: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 78/200
+ - 275s - loss: 217.8032 - vae_r_loss: 158.7870 - vae_kl_loss: 59.0171
+
+Epoch 00078: saving model to run/vae/0001_faces/weights/weights-078-217.80.h5
+
+Epoch 00078: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 79/200
+ - 292s - loss: 217.7745 - vae_r_loss: 158.7187 - vae_kl_loss: 59.0583
+
+Epoch 00079: saving model to run/vae/0001_faces/weights/weights-079-217.78.h5
+
+Epoch 00079: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 80/200
+ - 284s - loss: 217.7668 - vae_r_loss: 158.7171 - vae_kl_loss: 59.0457
+
+Epoch 00080: saving model to run/vae/0001_faces/weights/weights-080-217.76.h5
+
+Epoch 00080: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 81/200
+ - 286s - loss: 217.7312 - vae_r_loss: 158.6920 - vae_kl_loss: 59.0416
+
+Epoch 00081: saving model to run/vae/0001_faces/weights/weights-081-217.73.h5
+
+Epoch 00081: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 82/200
+ - 274s - loss: 217.6751 - vae_r_loss: 158.6693 - vae_kl_loss: 59.0023
+
+Epoch 00082: saving model to run/vae/0001_faces/weights/weights-082-217.67.h5
+
+Epoch 00082: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 83/200
+ - 279s - loss: 217.7531 - vae_r_loss: 158.7171 - vae_kl_loss: 59.0291
+
+Epoch 00083: saving model to run/vae/0001_faces/weights/weights-083-217.75.h5
+
+Epoch 00083: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 84/200
+ - 296s - loss: 217.6718 - vae_r_loss: 158.6260 - vae_kl_loss: 59.0382
+
+Epoch 00084: saving model to run/vae/0001_faces/weights/weights-084-217.66.h5
+
+Epoch 00084: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 85/200
+ - 294s - loss: 217.7160 - vae_r_loss: 158.6411 - vae_kl_loss: 59.0769
+
+Epoch 00085: saving model to run/vae/0001_faces/weights/weights-085-217.72.h5
+
+Epoch 00085: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 86/200
+ - 274s - loss: 217.7502 - vae_r_loss: 158.6902 - vae_kl_loss: 59.0559
+
+Epoch 00086: saving model to run/vae/0001_faces/weights/weights-086-217.75.h5
+
+Epoch 00086: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 87/200
+ - 278s - loss: 217.6770 - vae_r_loss: 158.6340 - vae_kl_loss: 59.0455
+
+Epoch 00087: saving model to run/vae/0001_faces/weights/weights-087-217.68.h5
+
+Epoch 00087: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 88/200
+ - 282s - loss: 217.7067 - vae_r_loss: 158.6352 - vae_kl_loss: 59.0713
+
+Epoch 00088: saving model to run/vae/0001_faces/weights/weights-088-217.71.h5
+
+Epoch 00088: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 89/200
+ - 277s - loss: 217.6726 - vae_r_loss: 158.6257 - vae_kl_loss: 59.0468
+
+Epoch 00089: saving model to run/vae/0001_faces/weights/weights-089-217.67.h5
+
+Epoch 00089: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 90/200
+ - 271s - loss: 217.6711 - vae_r_loss: 158.6103 - vae_kl_loss: 59.0519
+
+Epoch 00090: saving model to run/vae/0001_faces/weights/weights-090-217.66.h5
+
+Epoch 00090: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 91/200
+ - 273s - loss: 217.6817 - vae_r_loss: 158.6416 - vae_kl_loss: 59.0430
+
+Epoch 00091: saving model to run/vae/0001_faces/weights/weights-091-217.68.h5
+
+Epoch 00091: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 92/200
+ - 278s - loss: 217.5727 - vae_r_loss: 158.5623 - vae_kl_loss: 59.0093
+
+Epoch 00092: saving model to run/vae/0001_faces/weights/weights-092-217.57.h5
+
+Epoch 00092: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 93/200
+ - 281s - loss: 217.5966 - vae_r_loss: 158.5273 - vae_kl_loss: 59.0643
+
+Epoch 00093: saving model to run/vae/0001_faces/weights/weights-093-217.59.h5
+
+Epoch 00093: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 94/200
+ - 280s - loss: 217.6623 - vae_r_loss: 158.6252 - vae_kl_loss: 59.0390
+
+Epoch 00094: saving model to run/vae/0001_faces/weights/weights-094-217.66.h5
+
+Epoch 00094: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 95/200
+ - 280s - loss: 217.6038 - vae_r_loss: 158.5514 - vae_kl_loss: 59.0538
+
+Epoch 00095: saving model to run/vae/0001_faces/weights/weights-095-217.61.h5
+
+Epoch 00095: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 96/200
+ - 281s - loss: 217.6063 - vae_r_loss: 158.5359 - vae_kl_loss: 59.0711
+
+Epoch 00096: saving model to run/vae/0001_faces/weights/weights-096-217.61.h5
+
+Epoch 00096: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 97/200
+ - 273s - loss: 217.5911 - vae_r_loss: 158.5290 - vae_kl_loss: 59.0582
+
+Epoch 00097: saving model to run/vae/0001_faces/weights/weights-097-217.59.h5
+
+Epoch 00097: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 98/200
+ - 280s - loss: 217.5699 - vae_r_loss: 158.5223 - vae_kl_loss: 59.0411
+
+Epoch 00098: saving model to run/vae/0001_faces/weights/weights-098-217.56.h5
+
+Epoch 00098: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 99/200
+ - 270s - loss: 217.5683 - vae_r_loss: 158.5313 - vae_kl_loss: 59.0372
+
+Epoch 00099: saving model to run/vae/0001_faces/weights/weights-099-217.57.h5
+
+Epoch 00099: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 100/200
+ - 276s - loss: 217.5498 - vae_r_loss: 158.5166 - vae_kl_loss: 59.0350
+
+Epoch 00100: saving model to run/vae/0001_faces/weights/weights-100-217.55.h5
+
+Epoch 00100: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 101/200
+ - 275s - loss: 217.5430 - vae_r_loss: 158.4997 - vae_kl_loss: 59.0452
+
+Epoch 00101: saving model to run/vae/0001_faces/weights/weights-101-217.55.h5
+
+Epoch 00101: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 102/200
+ - 278s - loss: 217.6047 - vae_r_loss: 158.5723 - vae_kl_loss: 59.0339
+
+Epoch 00102: saving model to run/vae/0001_faces/weights/weights-102-217.61.h5
+
+Epoch 00102: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 103/200
+ - 277s - loss: 217.5520 - vae_r_loss: 158.4966 - vae_kl_loss: 59.0536
+
+Epoch 00103: saving model to run/vae/0001_faces/weights/weights-103-217.55.h5
+
+Epoch 00103: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 104/200
+ - 278s - loss: 217.5285 - vae_r_loss: 158.4698 - vae_kl_loss: 59.0563
+
+Epoch 00104: saving model to run/vae/0001_faces/weights/weights-104-217.53.h5
+
+Epoch 00104: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 105/200
+ - 281s - loss: 217.4708 - vae_r_loss: 158.4053 - vae_kl_loss: 59.0572
+
+Epoch 00105: saving model to run/vae/0001_faces/weights/weights-105-217.46.h5
+
+Epoch 00105: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 106/200
+ - 281s - loss: 217.5126 - vae_r_loss: 158.4327 - vae_kl_loss: 59.0804
+
+Epoch 00106: saving model to run/vae/0001_faces/weights/weights-106-217.51.h5
+
+Epoch 00106: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 107/200
+ - 283s - loss: 217.4694 - vae_r_loss: 158.4218 - vae_kl_loss: 59.0501
+
+Epoch 00107: saving model to run/vae/0001_faces/weights/weights-107-217.47.h5
+
+Epoch 00107: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 108/200
+ - 276s - loss: 217.5325 - vae_r_loss: 158.4620 - vae_kl_loss: 59.0711
+
+Epoch 00108: saving model to run/vae/0001_faces/weights/weights-108-217.53.h5
+
+Epoch 00108: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 109/200
+ - 283s - loss: 217.5252 - vae_r_loss: 158.4522 - vae_kl_loss: 59.0662
+
+Epoch 00109: saving model to run/vae/0001_faces/weights/weights-109-217.52.h5
+
+Epoch 00109: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 110/200
+ - 284s - loss: 217.4759 - vae_r_loss: 158.4208 - vae_kl_loss: 59.0529
+
+Epoch 00110: saving model to run/vae/0001_faces/weights/weights-110-217.47.h5
+
+Epoch 00110: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 111/200
+ - 279s - loss: 217.4803 - vae_r_loss: 158.4100 - vae_kl_loss: 59.0694
+
+Epoch 00111: saving model to run/vae/0001_faces/weights/weights-111-217.48.h5
+
+Epoch 00111: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 112/200
+ - 278s - loss: 217.4667 - vae_r_loss: 158.3930 - vae_kl_loss: 59.0702
+
+Epoch 00112: saving model to run/vae/0001_faces/weights/weights-112-217.46.h5
+
+Epoch 00112: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 113/200
+ - 273s - loss: 217.4382 - vae_r_loss: 158.3936 - vae_kl_loss: 59.0438
+
+Epoch 00113: saving model to run/vae/0001_faces/weights/weights-113-217.44.h5
+
+Epoch 00113: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 114/200
+ - 279s - loss: 217.5181 - vae_r_loss: 158.4301 - vae_kl_loss: 59.0795
+
+Epoch 00114: saving model to run/vae/0001_faces/weights/weights-114-217.51.h5
+
+Epoch 00114: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 115/200
+ - 268s - loss: 217.3996 - vae_r_loss: 158.3429 - vae_kl_loss: 59.0518
+
+Epoch 00115: saving model to run/vae/0001_faces/weights/weights-115-217.39.h5
+
+Epoch 00115: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 116/200
+ - 283s - loss: 217.4745 - vae_r_loss: 158.3681 - vae_kl_loss: 59.0999
+
+Epoch 00116: saving model to run/vae/0001_faces/weights/weights-116-217.47.h5
+
+Epoch 00116: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 117/200
+ - 272s - loss: 217.4427 - vae_r_loss: 158.3549 - vae_kl_loss: 59.0841
+
+Epoch 00117: saving model to run/vae/0001_faces/weights/weights-117-217.44.h5
+
+Epoch 00117: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 118/200
+ - 273s - loss: 217.5103 - vae_r_loss: 158.4231 - vae_kl_loss: 59.0866
+
+Epoch 00118: saving model to run/vae/0001_faces/weights/weights-118-217.51.h5
+
+Epoch 00118: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 119/200
+ - 277s - loss: 217.4612 - vae_r_loss: 158.3654 - vae_kl_loss: 59.0936
+
+Epoch 00119: saving model to run/vae/0001_faces/weights/weights-119-217.46.h5
+
+Epoch 00119: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 120/200
+ - 269s - loss: 217.4047 - vae_r_loss: 158.3302 - vae_kl_loss: 59.0733
+
+Epoch 00120: saving model to run/vae/0001_faces/weights/weights-120-217.40.h5
+
+Epoch 00120: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 121/200
+ - 268s - loss: 217.4557 - vae_r_loss: 158.3799 - vae_kl_loss: 59.0733
+
+Epoch 00121: saving model to run/vae/0001_faces/weights/weights-121-217.45.h5
+
+Epoch 00121: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 122/200
+ - 284s - loss: 217.3528 - vae_r_loss: 158.2955 - vae_kl_loss: 59.0515
+
+Epoch 00122: saving model to run/vae/0001_faces/weights/weights-122-217.35.h5
+
+Epoch 00122: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 123/200
+ - 277s - loss: 217.3518 - vae_r_loss: 158.2755 - vae_kl_loss: 59.0705
+
+Epoch 00123: saving model to run/vae/0001_faces/weights/weights-123-217.35.h5
+
+Epoch 00123: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 124/200
+ - 275s - loss: 217.3663 - vae_r_loss: 158.2819 - vae_kl_loss: 59.0787
+
+Epoch 00124: saving model to run/vae/0001_faces/weights/weights-124-217.36.h5
+
+Epoch 00124: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 125/200
+ - 281s - loss: 217.3961 - vae_r_loss: 158.3015 - vae_kl_loss: 59.0854
+
+Epoch 00125: saving model to run/vae/0001_faces/weights/weights-125-217.39.h5
+
+Epoch 00125: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 126/200
+ - 280s - loss: 217.3365 - vae_r_loss: 158.2614 - vae_kl_loss: 59.0780
+
+Epoch 00126: saving model to run/vae/0001_faces/weights/weights-126-217.34.h5
+
+Epoch 00126: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 127/200
+ - 274s - loss: 217.2616 - vae_r_loss: 158.1965 - vae_kl_loss: 59.0661
+
+Epoch 00127: saving model to run/vae/0001_faces/weights/weights-127-217.26.h5
+
+Epoch 00127: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 128/200
+ - 276s - loss: 217.3624 - vae_r_loss: 158.2753 - vae_kl_loss: 59.0882
+
+Epoch 00128: saving model to run/vae/0001_faces/weights/weights-128-217.36.h5
+
+Epoch 00128: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 129/200
+ - 275s - loss: 217.3008 - vae_r_loss: 158.2223 - vae_kl_loss: 59.0743
+
+Epoch 00129: saving model to run/vae/0001_faces/weights/weights-129-217.30.h5
+
+Epoch 00129: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 130/200
+ - 282s - loss: 217.3826 - vae_r_loss: 158.3049 - vae_kl_loss: 59.0811
+
+Epoch 00130: saving model to run/vae/0001_faces/weights/weights-130-217.39.h5
+
+Epoch 00130: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 131/200
+ - 277s - loss: 217.2569 - vae_r_loss: 158.2052 - vae_kl_loss: 59.0500
+
+Epoch 00131: saving model to run/vae/0001_faces/weights/weights-131-217.26.h5
+
+Epoch 00131: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 132/200
+ - 279s - loss: 217.4329 - vae_r_loss: 158.3256 - vae_kl_loss: 59.1047
+
+Epoch 00132: saving model to run/vae/0001_faces/weights/weights-132-217.43.h5
+
+Epoch 00132: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 133/200
+ - 279s - loss: 217.2987 - vae_r_loss: 158.2165 - vae_kl_loss: 59.0648
+
+Epoch 00133: saving model to run/vae/0001_faces/weights/weights-133-217.28.h5
+
+Epoch 00133: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 134/200
+ - 281s - loss: 217.3764 - vae_r_loss: 158.3041 - vae_kl_loss: 59.0714
+
+Epoch 00134: saving model to run/vae/0001_faces/weights/weights-134-217.38.h5
+
+Epoch 00134: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 135/200
+ - 279s - loss: 217.2577 - vae_r_loss: 158.1784 - vae_kl_loss: 59.0777
+
+Epoch 00135: saving model to run/vae/0001_faces/weights/weights-135-217.26.h5
+
+Epoch 00135: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 136/200
+ - 276s - loss: 217.3355 - vae_r_loss: 158.2615 - vae_kl_loss: 59.0759
+
+Epoch 00136: saving model to run/vae/0001_faces/weights/weights-136-217.34.h5
+
+Epoch 00136: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 137/200
+ - 289s - loss: 217.3352 - vae_r_loss: 158.2562 - vae_kl_loss: 59.0773
+
+Epoch 00137: saving model to run/vae/0001_faces/weights/weights-137-217.33.h5
+
+Epoch 00137: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 138/200
+ - 276s - loss: 217.2603 - vae_r_loss: 158.1746 - vae_kl_loss: 59.0833
+
+Epoch 00138: saving model to run/vae/0001_faces/weights/weights-138-217.26.h5
+
+Epoch 00138: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 139/200
+ - 289s - loss: 217.3551 - vae_r_loss: 158.2697 - vae_kl_loss: 59.0779
+
+Epoch 00139: saving model to run/vae/0001_faces/weights/weights-139-217.35.h5
+
+Epoch 00139: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 140/200
+ - 284s - loss: 217.2868 - vae_r_loss: 158.2111 - vae_kl_loss: 59.0775
+
+Epoch 00140: saving model to run/vae/0001_faces/weights/weights-140-217.29.h5
+
+Epoch 00140: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 141/200
+ - 294s - loss: 217.4502 - vae_r_loss: 158.3298 - vae_kl_loss: 59.1144
+
+Epoch 00141: saving model to run/vae/0001_faces/weights/weights-141-217.44.h5
+
+Epoch 00141: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 142/200
+ - 303s - loss: 217.2760 - vae_r_loss: 158.2051 - vae_kl_loss: 59.0665
+
+Epoch 00142: saving model to run/vae/0001_faces/weights/weights-142-217.27.h5
+
+Epoch 00142: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 143/200
+ - 276s - loss: 217.3184 - vae_r_loss: 158.2494 - vae_kl_loss: 59.0724
+
+Epoch 00143: saving model to run/vae/0001_faces/weights/weights-143-217.32.h5
+
+Epoch 00143: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 144/200
+ - 274s - loss: 217.2605 - vae_r_loss: 158.2107 - vae_kl_loss: 59.0494
+
+Epoch 00144: saving model to run/vae/0001_faces/weights/weights-144-217.26.h5
+
+Epoch 00144: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 145/200
+ - 283s - loss: 217.2312 - vae_r_loss: 158.1624 - vae_kl_loss: 59.0657
+
+Epoch 00145: saving model to run/vae/0001_faces/weights/weights-145-217.23.h5
+
+Epoch 00145: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 146/200
+ - 275s - loss: 217.2465 - vae_r_loss: 158.1771 - vae_kl_loss: 59.0677
+
+Epoch 00146: saving model to run/vae/0001_faces/weights/weights-146-217.24.h5
+
+Epoch 00146: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 147/200
+ - 276s - loss: 217.2818 - vae_r_loss: 158.2040 - vae_kl_loss: 59.0787
+
+Epoch 00147: saving model to run/vae/0001_faces/weights/weights-147-217.28.h5
+
+Epoch 00147: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 148/200
+ - 282s - loss: 217.2876 - vae_r_loss: 158.2136 - vae_kl_loss: 59.0705
+
+Epoch 00148: saving model to run/vae/0001_faces/weights/weights-148-217.28.h5
+
+Epoch 00148: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 149/200
+ - 274s - loss: 217.2608 - vae_r_loss: 158.1900 - vae_kl_loss: 59.0715
+
+Epoch 00149: saving model to run/vae/0001_faces/weights/weights-149-217.26.h5
+
+Epoch 00149: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 150/200
+ - 285s - loss: 217.2425 - vae_r_loss: 158.1786 - vae_kl_loss: 59.0650
+
+Epoch 00150: saving model to run/vae/0001_faces/weights/weights-150-217.24.h5
+
+Epoch 00150: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 151/200
+ - 279s - loss: 217.2469 - vae_r_loss: 158.1800 - vae_kl_loss: 59.0617
+
+Epoch 00151: saving model to run/vae/0001_faces/weights/weights-151-217.24.h5
+
+Epoch 00151: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 152/200
+ - 277s - loss: 217.3061 - vae_r_loss: 158.2493 - vae_kl_loss: 59.0561
+
+Epoch 00152: saving model to run/vae/0001_faces/weights/weights-152-217.30.h5
+
+Epoch 00152: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 153/200
+ - 306s - loss: 217.1669 - vae_r_loss: 158.1278 - vae_kl_loss: 59.0359
+
+Epoch 00153: saving model to run/vae/0001_faces/weights/weights-153-217.16.h5
+
+Epoch 00153: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 154/200
+ - 283s - loss: 217.2032 - vae_r_loss: 158.1456 - vae_kl_loss: 59.0561
+
+Epoch 00154: saving model to run/vae/0001_faces/weights/weights-154-217.20.h5
+
+Epoch 00154: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 155/200
+ - 278s - loss: 217.2382 - vae_r_loss: 158.1539 - vae_kl_loss: 59.0845
+
+Epoch 00155: saving model to run/vae/0001_faces/weights/weights-155-217.24.h5
+
+Epoch 00155: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 156/200
+ - 286s - loss: 217.1027 - vae_r_loss: 158.0514 - vae_kl_loss: 59.0493
+
+Epoch 00156: saving model to run/vae/0001_faces/weights/weights-156-217.10.h5
+
+Epoch 00156: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 157/200
+ - 290s - loss: 217.2099 - vae_r_loss: 158.1536 - vae_kl_loss: 59.0590
+
+Epoch 00157: saving model to run/vae/0001_faces/weights/weights-157-217.21.h5
+
+Epoch 00157: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 158/200
+ - 284s - loss: 217.1608 - vae_r_loss: 158.1187 - vae_kl_loss: 59.0371
+
+Epoch 00158: saving model to run/vae/0001_faces/weights/weights-158-217.16.h5
+
+Epoch 00158: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 159/200
+ - 288s - loss: 217.1408 - vae_r_loss: 158.0785 - vae_kl_loss: 59.0633
+
+Epoch 00159: saving model to run/vae/0001_faces/weights/weights-159-217.14.h5
+
+Epoch 00159: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 160/200
+ - 297s - loss: 217.1977 - vae_r_loss: 158.1159 - vae_kl_loss: 59.0680
+
+Epoch 00160: saving model to run/vae/0001_faces/weights/weights-160-217.18.h5
+
+Epoch 00160: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 161/200
+ - 292s - loss: 217.1623 - vae_r_loss: 158.1016 - vae_kl_loss: 59.0610
+
+Epoch 00161: saving model to run/vae/0001_faces/weights/weights-161-217.16.h5
+
+Epoch 00161: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 162/200
+ - 297s - loss: 217.1363 - vae_r_loss: 158.0727 - vae_kl_loss: 59.0637
+
+Epoch 00162: saving model to run/vae/0001_faces/weights/weights-162-217.14.h5
+
+Epoch 00162: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 163/200
+ - 291s - loss: 217.1227 - vae_r_loss: 158.0704 - vae_kl_loss: 59.0504
+
+Epoch 00163: saving model to run/vae/0001_faces/weights/weights-163-217.12.h5
+
+Epoch 00163: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 164/200
+ - 289s - loss: 217.1908 - vae_r_loss: 158.1061 - vae_kl_loss: 59.0818
+
+Epoch 00164: saving model to run/vae/0001_faces/weights/weights-164-217.19.h5
+
+Epoch 00164: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 165/200
+ - 290s - loss: 217.1186 - vae_r_loss: 158.0919 - vae_kl_loss: 59.0248
+
+Epoch 00165: saving model to run/vae/0001_faces/weights/weights-165-217.12.h5
+
+Epoch 00165: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 166/200
+ - 277s - loss: 217.1407 - vae_r_loss: 158.0515 - vae_kl_loss: 59.0874
+
+Epoch 00166: saving model to run/vae/0001_faces/weights/weights-166-217.14.h5
+
+Epoch 00166: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 167/200
+ - 276s - loss: 217.1234 - vae_r_loss: 158.0583 - vae_kl_loss: 59.0671
+
+Epoch 00167: saving model to run/vae/0001_faces/weights/weights-167-217.13.h5
+
+Epoch 00167: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 168/200
+ - 278s - loss: 217.1500 - vae_r_loss: 158.0931 - vae_kl_loss: 59.0610
+
+Epoch 00168: saving model to run/vae/0001_faces/weights/weights-168-217.15.h5
+
+Epoch 00168: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 169/200
+ - 280s - loss: 217.1238 - vae_r_loss: 158.0661 - vae_kl_loss: 59.0511
+
+Epoch 00169: saving model to run/vae/0001_faces/weights/weights-169-217.12.h5
+
+Epoch 00169: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 170/200
+ - 279s - loss: 217.1491 - vae_r_loss: 158.0886 - vae_kl_loss: 59.0604
+
+Epoch 00170: saving model to run/vae/0001_faces/weights/weights-170-217.15.h5
+
+Epoch 00170: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 171/200
+ - 278s - loss: 217.1707 - vae_r_loss: 158.1330 - vae_kl_loss: 59.0377
+
+Epoch 00171: saving model to run/vae/0001_faces/weights/weights-171-217.17.h5
+
+Epoch 00171: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 172/200
+ - 276s - loss: 217.1920 - vae_r_loss: 158.1241 - vae_kl_loss: 59.0574
+
+Epoch 00172: saving model to run/vae/0001_faces/weights/weights-172-217.18.h5
+
+Epoch 00172: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 173/200
+ - 273s - loss: 217.1518 - vae_r_loss: 158.0842 - vae_kl_loss: 59.0654
+
+Epoch 00173: saving model to run/vae/0001_faces/weights/weights-173-217.15.h5
+
+Epoch 00173: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 174/200
+ - 277s - loss: 217.0915 - vae_r_loss: 158.0331 - vae_kl_loss: 59.0573
+
+Epoch 00174: saving model to run/vae/0001_faces/weights/weights-174-217.09.h5
+
+Epoch 00174: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 175/200
+ - 277s - loss: 217.1258 - vae_r_loss: 158.0572 - vae_kl_loss: 59.0705
+
+Epoch 00175: saving model to run/vae/0001_faces/weights/weights-175-217.13.h5
+
+Epoch 00175: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 176/200
+ - 311s - loss: 217.1098 - vae_r_loss: 158.0549 - vae_kl_loss: 59.0512
+
+Epoch 00176: saving model to run/vae/0001_faces/weights/weights-176-217.11.h5
+
+Epoch 00176: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 177/200
+ - 286s - loss: 217.1855 - vae_r_loss: 158.1181 - vae_kl_loss: 59.0679
+
+Epoch 00177: saving model to run/vae/0001_faces/weights/weights-177-217.19.h5
+
+Epoch 00177: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 178/200
+ - 277s - loss: 217.1225 - vae_r_loss: 158.0867 - vae_kl_loss: 59.0335
+
+Epoch 00178: saving model to run/vae/0001_faces/weights/weights-178-217.12.h5
+
+Epoch 00178: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 179/200
+ - 285s - loss: 217.1086 - vae_r_loss: 158.0683 - vae_kl_loss: 59.0430
+
+Epoch 00179: saving model to run/vae/0001_faces/weights/weights-179-217.11.h5
+
+Epoch 00179: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 180/200
+ - 277s - loss: 217.1337 - vae_r_loss: 158.0482 - vae_kl_loss: 59.0830
+
+Epoch 00180: saving model to run/vae/0001_faces/weights/weights-180-217.13.h5
+
+Epoch 00180: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 181/200
+ - 279s - loss: 217.0787 - vae_r_loss: 158.0415 - vae_kl_loss: 59.0359
+
+Epoch 00181: saving model to run/vae/0001_faces/weights/weights-181-217.08.h5
+
+Epoch 00181: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 182/200
+ - 281s - loss: 217.0246 - vae_r_loss: 157.9847 - vae_kl_loss: 59.0345
+
+Epoch 00182: saving model to run/vae/0001_faces/weights/weights-182-217.02.h5
+
+Epoch 00182: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 183/200
+ - 277s - loss: 217.1260 - vae_r_loss: 158.0750 - vae_kl_loss: 59.0450
+
+Epoch 00183: saving model to run/vae/0001_faces/weights/weights-183-217.12.h5
+
+Epoch 00183: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 184/200
+ - 286s - loss: 217.0776 - vae_r_loss: 158.0410 - vae_kl_loss: 59.0355
+
+Epoch 00184: saving model to run/vae/0001_faces/weights/weights-184-217.08.h5
+
+Epoch 00184: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 185/200
+ - 296s - loss: 217.0739 - vae_r_loss: 158.0279 - vae_kl_loss: 59.0441
+
+Epoch 00185: saving model to run/vae/0001_faces/weights/weights-185-217.07.h5
+
+Epoch 00185: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 186/200
+ - 281s - loss: 217.1322 - vae_r_loss: 158.0603 - vae_kl_loss: 59.0734
+
+Epoch 00186: saving model to run/vae/0001_faces/weights/weights-186-217.13.h5
+
+Epoch 00186: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 187/200
+ - 276s - loss: 217.0864 - vae_r_loss: 158.0411 - vae_kl_loss: 59.0457
+
+Epoch 00187: saving model to run/vae/0001_faces/weights/weights-187-217.09.h5
+
+Epoch 00187: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 188/200
+ - 273s - loss: 217.1593 - vae_r_loss: 158.0934 - vae_kl_loss: 59.0679
+
+Epoch 00188: saving model to run/vae/0001_faces/weights/weights-188-217.16.h5
+
+Epoch 00188: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 189/200
+ - 276s - loss: 217.0682 - vae_r_loss: 158.0459 - vae_kl_loss: 59.0181
+
+Epoch 00189: saving model to run/vae/0001_faces/weights/weights-189-217.06.h5
+
+Epoch 00189: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 190/200
+ - 454s - loss: 217.0438 - vae_r_loss: 157.9911 - vae_kl_loss: 59.0510
+
+Epoch 00190: saving model to run/vae/0001_faces/weights/weights-190-217.04.h5
+
+Epoch 00190: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 191/200
+ - 275s - loss: 217.0872 - vae_r_loss: 158.0176 - vae_kl_loss: 59.0685
+
+Epoch 00191: saving model to run/vae/0001_faces/weights/weights-191-217.09.h5
+
+Epoch 00191: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 192/200
+ - 291s - loss: 217.1297 - vae_r_loss: 158.0800 - vae_kl_loss: 59.0482
+
+Epoch 00192: saving model to run/vae/0001_faces/weights/weights-192-217.13.h5
+
+Epoch 00192: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 193/200
+ - 284s - loss: 217.0074 - vae_r_loss: 157.9693 - vae_kl_loss: 59.0380
+
+Epoch 00193: saving model to run/vae/0001_faces/weights/weights-193-217.01.h5
+
+Epoch 00193: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 194/200
+ - 278s - loss: 217.0424 - vae_r_loss: 157.9886 - vae_kl_loss: 59.0529
+
+Epoch 00194: saving model to run/vae/0001_faces/weights/weights-194-217.04.h5
+
+Epoch 00194: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 195/200
+ - 280s - loss: 217.0076 - vae_r_loss: 157.9734 - vae_kl_loss: 59.0309
+
+Epoch 00195: saving model to run/vae/0001_faces/weights/weights-195-217.00.h5
+
+Epoch 00195: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 196/200
+ - 279s - loss: 217.0930 - vae_r_loss: 158.0435 - vae_kl_loss: 59.0442
+
+Epoch 00196: saving model to run/vae/0001_faces/weights/weights-196-217.09.h5
+
+Epoch 00196: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 197/200
+ - 284s - loss: 217.0356 - vae_r_loss: 157.9964 - vae_kl_loss: 59.0404
+
+Epoch 00197: saving model to run/vae/0001_faces/weights/weights-197-217.04.h5
+
+Epoch 00197: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 198/200
+ - 278s - loss: 217.0430 - vae_r_loss: 158.0084 - vae_kl_loss: 59.0203
+
+Epoch 00198: saving model to run/vae/0001_faces/weights/weights-198-217.03.h5
+
+Epoch 00198: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 199/200
+ - 277s - loss: 217.0779 - vae_r_loss: 158.0410 - vae_kl_loss: 59.0238
+
+Epoch 00199: saving model to run/vae/0001_faces/weights/weights-199-217.06.h5
+
+Epoch 00199: saving model to run/vae/0001_faces/weights/weights.h5
+Epoch 200/200
+ - 281s - loss: 216.9865 - vae_r_loss: 157.9442 - vae_kl_loss: 59.0398
+
+Epoch 00200: saving model to run/vae/0001_faces/weights/weights-200-216.98.h5
+
+Epoch 00200: saving model to run/vae/0001_faces/weights/weights.h5
