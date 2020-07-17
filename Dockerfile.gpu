@@ -2,8 +2,8 @@
 # build with `ln -sf Dockerfile.gpu Dockerfile && docker build --network=host -t {container-name} .`
 # NOTE(jwd) - if you wish to use this implementation, you must install nvidia-docker v2.0
 # see https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0) for steps
+# FROM tensorflow/tensorflow:latest-gpu-py3-jupyter
 FROM tensorflow/tensorflow:latest-gpu-py3-jupyter
-
 ## modify below
 ARG username=gdl
 ARG groupid=1000

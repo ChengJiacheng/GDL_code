@@ -1,5 +1,6 @@
 # FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-runtime
-FROM tensorflow/tensorflow:2.0.1-gpu-py3
+FROM tensorflow/tensorflow:latest-gpu-py3-jupyter
+# docker pull tensorflow/tensorflow:1.15.2-gpu-py3-jupyter
 # FROM continuumio/anaconda:2019.10-alpine
 RUN apt-get update && apt-get install -y libsm6 libxext6 libxrender-dev vim wget sudo psmisc locales cmake vim htop  graphviz libgraphviz-dev 
 RUN apt-get install -y libgl1-mesa-glx libegl1-mesa libxrandr2  libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6 git
@@ -8,17 +9,13 @@ RUN apt-get install -y libgl1-mesa-glx libegl1-mesa libxrandr2  libxss1 libxcurs
 # https://repo.continuum.io/archive/
 RUN wget https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh && bash Anaconda3-4.2.0-Linux-x86_64.sh -b -p ~/anaconda  && rm Anaconda3-4.2.0-Linux-x86_64.sh
 ENV PATH ~/anaconda/bin:$PATH
-RUN source ~/.bashrc
+
 
 RUN locale-gen en_US.UTF-8
 
-           
-
-
-
-ADD https://raw.githubusercontent.com/ChengJiacheng/GDL_code/master/Docker/TF20/TF20.yml /tmp/environment.yml
-RUN conda env create --file /tmp/environment.yml &&  echo "source activate TF20" >> ~/.bashrc
-ENV PATH /root/anaconda/envs/TF20/bin:$PATH
+# ADD https://raw.githubusercontent.com/ChengJiacheng/GDL_code/master/Docker/TF20/TF20.yml /tmp/environment.yml
+# RUN conda env create --file /tmp/environment.yml && echo "source activate TF20" >> ~/.bashrc
+# ENV PATH /opt/conda/envs/torch/bin:$PATH
 
 ADD https://github.com/cdr/code-server/releases/download/3.0.2/code-server-3.0.2-linux-x86_64.tar.gz ./ 
 RUN tar -xvzf code-server-3.0.2-linux-x86_64.tar.gz && rm -r code-server-3.0.2-linux-x86_64.tar.gz && code-server-3.0.2-linux-x86_64/code-server --install-extension ms-python.python
