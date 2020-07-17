@@ -215,7 +215,7 @@ class VariationalAutoencoder():
         checkpoint2 = ModelCheckpoint(os.path.join(run_folder, 'weights/weights.h5'), save_weights_only = True, verbose=1)
 
         callbacks_list = [checkpoint1, checkpoint2, custom_callback, lr_sched]
-        callbacks_list = []
+        # callbacks_list = []
 
         self.model.save_weights(os.path.join(run_folder, 'weights/weights.h5'))
                 
@@ -224,10 +224,10 @@ class VariationalAutoencoder():
             , shuffle = True
             , epochs = epochs
             , initial_epoch = initial_epoch
-            # , callbacks = callbacks_list
+            , callbacks = callbacks_list
             , steps_per_epoch=steps_per_epoch 
-            # , workers=2, use_multiprocessing=True
-            , verbose=1
+            , workers=2, use_multiprocessing=True
+            , verbose=2
             )
 
 

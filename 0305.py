@@ -31,7 +31,8 @@ if not os.path.exists(RUN_FOLDER):
 mode =  'build' #'load' #
 
 
-DATA_FOLDER = './data/celeb/'
+# DATA_FOLDER = './data/celeb/'
+DATA_FOLDER = '/celeb'
 
 # %% [markdown]
 # ## data
@@ -43,6 +44,10 @@ BATCH_SIZE = 32
 filenames = np.array(glob(os.path.join(DATA_FOLDER, '*/*.jpg')))
 
 NUM_IMAGES = len(filenames)
+
+
+# %%
+NUM_IMAGES
 
 
 # %%
